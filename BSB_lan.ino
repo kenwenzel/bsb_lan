@@ -1,4 +1,5 @@
 char version[] = "0.38";
+#define ETHERNET_W5500      // activate for newer Ethernet2-Shields (W5500 instead of W5100) and install Ethernet2 library before compiling
 
 /*
  * 

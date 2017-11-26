@@ -10,8 +10,7 @@
  * (port 80 is default for HTTP):
 */
 
-//#define ETHERNET_W5500      // activate for newer Ethernet2-Shields (W5500 instead of W5100) and install Ethernet2 library before compiling
-IPAddress ip(192,168,178,88);
+IPAddress ip(192,168,1,88);
 EthernetServer server(80);
 
 /* SECURITY OPTIONS
@@ -51,7 +50,7 @@ EthernetServer server(80);
  * Set fixed_device_id to your device family (parameter 6225) here if autodetect does not work or heating system is not running when Arduino is powered on
  * You may use other device family numbers to test commands from other heating systems at your own risk
 */
-int fixed_device_id = 0;
+int fixed_device_id = 108;
 
 /* display web interface in German language; remove definement for English */
 #define LANG_DE
@@ -76,8 +75,14 @@ int avg_parameters[20] = {
 int log_parameters[20] = {
 //  30000,                  // Logging von "rohen" Bus-Datentelegrammen (macht nur als alleiniger Parameter Sinn)
   8700,                   // Außentemperatur
-  8743,                   // Vorlauftemperatur
-  8314,                   // Rücklauftemperatur
+  8411,                   // Sollwert WP
+  8412,                   // Vorlauftemperatur
+  8410,                   // Rücklauftemperatur
+  8427,                   // Quelle Eintrittstemperatur
+  8429,                   // Quelle Austrittstemperatur
+  8398,                   // Leistungszahl
+  8395,                   // Wärmeabgabe
+  8456                    // Betriebsstunden Elektrovorlauf
 //  20000,                  // Spezialparameter: Brenner-Laufzeit (/B)
 //  20001,                  // Spezialparameter: Brenner-Takte (/B)
 //  20002,                  // Spezialparameter: TWW-Laufzeit (/B)
@@ -87,7 +92,7 @@ int log_parameters[20] = {
 //  20200                   // Spezialparameter 20200-20299: DS18B20-Sensoren 1-100 (/T)
 };
 
-unsigned long log_interval = 3600;    // logging interval in seconds
+unsigned long log_interval = 300;    // logging interval in seconds
 boolean log_unknown_only = 1;         // should we log only unknown commands when logging bus telegrams?
 boolean log_bc_only = 0;              // should we log only broadcast commands (dest = 0x7f) when logging bus telegrams?
 
